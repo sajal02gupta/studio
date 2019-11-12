@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.dxc.studio.model.Album;
 import com.dxc.studio.model.Track;
 
 @Repository
@@ -39,6 +38,13 @@ public class TrackDALImp implements TrackDAL{
 	public Track findById(String id) {
 		// TODO Auto-generated method stub
 		return mongo.findAndRemove(new Query(Criteria.where("id").is(id)), Track.class);
+	}
+
+	@Override
+	public Track update(String id,Track track) {
+		Query query= new Query();
+		query.addCriteria(Criteria.where("id").is(id));
+		return mongo.save(track);
 	}
 	
 }

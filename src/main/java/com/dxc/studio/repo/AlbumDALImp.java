@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -44,8 +43,8 @@ public class AlbumDALImp implements AlbumDAL{
 	@Override
 	public Album update(String id, Album album) {
 		// TODO Auto-generated method stub
-		Query query= new Query(Criteria.where("id").is(id));
-		Update update= new Update();
-		return mongo.findAndModify(query, update, Album.class);
+		Query query= new Query();
+		query.addCriteria(Criteria.where("id").is(id));
+		return mongo.save(album);
 	}
 }

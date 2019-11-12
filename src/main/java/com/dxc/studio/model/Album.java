@@ -1,7 +1,9 @@
 package com.dxc.studio.model;
 
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -11,9 +13,15 @@ public class Album {
 	private String albumName;
 	private String yearOfRelease;
 	@DBRef
-	private List<Artist> artist;
+	private List<Artist> artists;
 	@DBRef
 	private List<Track> track;
+	
+	@CreatedDate
+	private Date createdDate= new Date();
+	
+	@org.springframework.data.annotation.LastModifiedDate
+	private Date LastModifiedDate= new Date();
 	
 	public Album() {
 		super();
@@ -25,8 +33,33 @@ public class Album {
 		this.id = id;
 		this.albumName = albumName;
 		this.yearOfRelease = yearOfRelease;
-		this.artist = artist;
+		this.artists = artist;
 		this.track = track;
+	}
+
+	
+	public List<Artist> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(List<Artist> artists) {
+		this.artists = artists;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getLastModifiedDate() {
+		return LastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		LastModifiedDate = lastModifiedDate;
 	}
 
 	public String getId() {
@@ -54,11 +87,11 @@ public class Album {
 	}
 
 	public List<Artist> getArtist() {
-		return artist;
+		return artists;
 	}
 
 	public void setArtist(List<Artist> artist) {
-		this.artist = artist;
+		this.artists = artist;
 	}
 
 	public List<Track> getTrack() {

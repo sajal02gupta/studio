@@ -1,6 +1,5 @@
 package com.dxc.studio.model;
 
-import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

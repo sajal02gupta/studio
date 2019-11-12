@@ -28,12 +28,9 @@ public class AlbumController {
 	public List<Album> findAll(){
 		return albumdal.findAll();
 	}
-	@PutMapping("/tracks/{id}")
-	public Album update(@PathVariable String id, @RequestBody Album trck){
-		trck.setId(id);
-		albumdal.create(trck);
-		
-		return trck;
+	@PutMapping("/albums/{id}")
+	public Album update(@PathVariable String id, @RequestBody Album album){
+		return albumdal.update(id, album);
 	}
 	
 	@DeleteMapping("/albums/{id}")

@@ -12,4 +12,6 @@ public interface ArtistDAL {
 	Boolean delete(Artist a);
 	
 	Artist findById(String id);
+	
+	Artist update(String id, Artist artist);
 }
